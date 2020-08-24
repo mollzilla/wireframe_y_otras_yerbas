@@ -1,0 +1,90 @@
+body {
+  background-color: pink;
+}
+
+
+.container {
+  max-width: 980px;
+  border: 2px solid black;
+  border-radius: 8px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  flex-grow: 1;
+  border: 2px solid black;
+  border-radius: 8px;
+  margin: 20px;
+  padding: 20px;
+}
+
+.logo {
+  border-radius: 8px;
+}
+
+.links {
+  display: flex;
+  justify-content: space-between;
+  width: 30%;
+}
+
+.item {
+  border-right: 1px solid black;
+  color: black;
+  height: 20px;
+  line-height: 20px;
+  padding-right: 5px;
+}
+
+header {
+  display: flex;
+  border: 2px solid black;
+  border-radius: 8px;
+  margin: 20px;
+  padding: 20px;
+}
+
+.main-image {
+  border-radius: 8px;
+}
+
+.round-images {
+  border-radius: 50%;
+}
+
+main {
+  border: 2px solid black;
+  border-radius: 8px;
+  margin: 20px;
+}
+
+section {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+.articles {
+  padding: 20px;
+}
+
+.nombre {
+  padding: 20px;
+  text-align: center;
+}
+
+.ver-mas {
+  display: flex;
+  justify-content: center;
+}
+
+.h2-ver-mas {
+  padding:20px;
+  border: 2px solid black;
+  margin: 20px;
+  width: 75%;
+  text-align: center;
+}

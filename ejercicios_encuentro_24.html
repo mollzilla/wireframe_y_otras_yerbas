@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicios encuentro 24</title>
+</head>
+
+<body>
+
+  <h1>Ejercicios Encuentro 24</h1>
+
+  <img src="diagrama_a_javascript.PNG" alt="" style="width: 1100px; height: 700px;">
+
+
+
+  <script>
+
+// Solicitar al visitante que ingrese su nombre de usuario.
+// Almacenar el nombre de usuario ingresado el una función.
+// Escenario Ǽ: El nombre no está en la lista.
+// Darle la bienvenida al nuevo usuario
+// Escenario ǽ: El nombre de usuario existe.
+// Dar un aviso al usuario que el nombre de usuario se encuentra en uso
+// Utilizar una función con try / catch para realizar la validación.
+
+    let nombres = ["juan", "rocky", "maria", "sofia"];
+
+    // let nombre=prompt("ingrese nombre");
+
+    // try {
+    //   if (nombres.find(nombre => nombre==nombre))
+    //     throw new Error("Nombre ya existente");  
+    //   } catch (error) {
+    //     console.error(error);
+    // }
+
+/* Validar */
+//     Crea un array donde cada posición sea un objeto que
+// contenga la siguiente información:
+// - Nombre
+// - Apellido
+// - Email
+// - Usuario
+// - Contraseña
+// - Activo (booleano)
+// Adapta tu función de “programamos” para que trabaje
+// con estos nuevos datos.
+// Solo permite loguear personas con el usuario y
+// contraseña correcto y que tengan su usuario activo.
+
+let usuarios=[
+  {
+    nombre: "pepe",
+    apellido: "honguito",
+    email: "pepe@honguito.com",
+    usuario: "pepe",
+    contrasena: "12345",
+    activo: false
+  }
+];
+
+let datosPersonales;
+
+function validar() {
+
+  let datosPersonalesIngresados=prompt("Ingrese usuario y contraseña separados por una coma");
+      datosPersonalesIngresados=datosPersonalesIngresados.split(", ");
+      console.log(datosPersonalesIngresados);
+
+  try {
+
+      let error="";
+      let errorFlag=false
+
+      datosPersonales=usuarios.find(dato => dato.nombre==datosPersonalesIngresados[0]);
+      console.log(datosPersonales);
+
+      if (!datosPersonales)
+      {
+        error="Usuario incorrecto\n";
+        errorFlag=true;
+      } else {
+
+        if (datosPersonalesIngresados[1]!=datosPersonales.contrasena)
+        {
+          error=error.concat("Contraseña incorrecta\n");
+          errorFlag=true;
+        }
+      
+        if (!datosPersonales.activo)
+        {
+          error=error.concat("Usuario desactivado");
+          errorFlag=true;
+        }
+      }
+
+      if(errorFlag)
+        throw new Error(error);
+
+    } catch (error) {
+      console.error(error);
+    }
+}
+
+// validar();
+
+// Crea una nueva función que permita modificar un usuario.
+// Recibe su nombre de usuario y busca si existe.
+// - Si no existe, informa este error a través de un alert.
+// - Si existe, solicita todos los datos a través del prompt y
+// reemplaza el objeto con la nueva información.
+
+function modificar() {
+  let datosPersonalesIngresados=prompt("Ingrese usuario");
+
+  datosPersonales=usuarios.find(dato => dato.nombre==datosPersonalesIngresados);
+  let ordenUsuario=usuarios.findIndex(dato => dato.nombre==datosPersonalesIngresados);
+  console.log(datosPersonales);
+  console.log(ordenUsuario);
+
+  try {
+
+      if (!datosPersonales)
+        throw new Error("Usuario incorrecto");
+
+    let inputNuevosDatos=prompt("Ingrese sus nuevos datos personales, separados por una coma.").split(", ");
+
+    usuarios[ordenUsuario]=({
+      nombre: inputNuevosDatos[0],
+      apellido: inputNuevosDatos[1],
+      email: inputNuevosDatos[2],
+      usuario: inputNuevosDatos[3],
+      contrasena: inputNuevosDatos[4],
+      activo: true
+    });
+    
+    console.log(usuarios);
+
+    } catch (error) {
+      console.error(error);
+    }
+}
+
+// modificar();
+
+/* Agregar */
+
+function agregar() {
+  let inputUsuario=prompt("Ingrese los siguientes datos, separados por una coma: Nombre, apellido, email, usuario, pass;").split([", "]);
+  let nuevoUsuario = {
+    nombre: inputUsuario[0],
+    apellido: inputUsuario[1],
+    email: inputUsuario[2],
+    usuario: inputUsuario[3],
+    contrasena: inputUsuario[4],
+    activo: true,
+  }
+
+  usuarios.push(nuevoUsuario);
+  console.log(usuarios);
+}
+
+// agregar();
+
+
+/* Diagrama a Javascript */
+
+/* Paso 1: Planteo del problema como condicional if/else */
+
+function diagramaAJavascript(n) {
+  
+  if(n>10)
+  {
+    return parseInt(prompt("Ingrese un número"))>100 ? `A y el número ingresado era ${n}` : `B y el número ingresado era ${n}`;
+  } else
+  {
+    return parseInt(prompt("Ingrese un número"))>1000 ? `C y el número ingresado era ${n}` : `D y el número ingresado era ${n}`;
+  }
+}
+
+
+/* Paso 2: Planteo del problema como condicional ternario */
+
+function diagramaAJavascript2(n) {
+  
+    return (n>10) ? 
+    parseInt(prompt("Ingrese un número"))>100 ? `A y el número ingresado era ${n}` : `B y el número ingresado era ${n}`
+    :
+    parseInt(prompt("Ingrese un número"))>1000 ? `C y el número ingresado era ${n}` : `D y el número ingresado era ${n}`;
+}
+
+
+/* Paso 3: Eliminación de la declaración return con ES6 */
+
+diagramaAJavascript3 = n => n>10 ? 
+  parseInt(prompt("Ingrese un número"))>100 ? `A y el número ingresado era ${n}` : `B y el número ingresado era ${n}`
+  :
+  parseInt(prompt("Ingrese un número"))>1000 ? `C y el número ingresado era ${n}` : `D y el número ingresado era ${n}`;
+
+
+
+/* Paso 4: Eliminación de repeticiones con concatenación para resumir la función en una sola línea */
+
+diagramaAJavascript4 = n =>
+(n>10 ? parseInt(prompt("Ingrese un número"))>100 ? "A" : "B" : parseInt(prompt("Ingrese un número"))>1000 ? "C" : "D") + ` y el número ingresado era ${n}`;
+
+
+/* Paso 5: Eliminación de la concatenación y paréntesis con backticks */
+
+diagramaAJavascript5 = n =>
+`${n>10 ? parseInt(prompt("Ingrese un número"))>100 ? "A" : "B" : parseInt(prompt("Ingrese un número"))>1000 ? "C" : "D"} y el número ingresado era ${n}`;
+
+
+
+// console.log(diagramaAJavascript5(parseInt(prompt("Ingrese un número"))));
+
+
+
+/* Diámetro del Círculo */
+
+
+let diametroDelCirculo = () =>
+  {
+    const PI=Math.PI;
+    let radio=parseFloat(prompt("Pasame el radio Xa"));
+
+    return `El diámetro es ${radio*2}, la circunferencia es ${(radio*2*PI).toFixed(3)} y la superficie ${(PI*(radio**2)).toFixed(3)}`
+    
+  }
+
+  console.log(diametroDelCirculo());
+
+
+
+  </script>
+  <!-- https://2ality.com/2012/09/expressions-vs-statements.html -->
+</body>
+
+</html>
